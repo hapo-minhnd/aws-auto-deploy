@@ -7,6 +7,6 @@ phases:
       - REPOSITORY_URI=304637142719.dkr.ecr.ap-northeast-1.amazonaws.com/django-demo
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       #- aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_ENDPOINT
-      - docker build -t django-demo .
-      - docker tag django-demo:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:latest
